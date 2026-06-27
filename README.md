@@ -45,58 +45,31 @@ The chatbot responds to expressions of anxiety, fear, loneliness, confusion, and
 
 ## 🏗️ System Architecture
 
-```
-                                ╔══════════════════════════════════════════════════════════════════╗
-                                ║                    🧠  MINDCARE ELDER PIPELINE                   ║
-                                ╚══════════════════════════════════════════════════════════════════╝
+```mermaid
+flowchart TD
 
-                                                             💬 User Input
-                                                                  │
-                                                                  ▼
-                                                      ┌───────────────────────┐
-                            e.g. "I feel anxious"     │    🗣️  User Query     │   
-                                                      └──────────┬────────────┘
-                                                                 │
-                                                          ┌──────▼──────┐
-                                                          │  Embedding  │  sentence-transformers/all-MiniLM-L6-v2
-                                                          └──────┬──────┘
-                                              Vector Search      │ 
-                                                                 ▼
-                                                      ╔═══════════════════════╗
-                                                      ║  🔍  FAISS Vector DB  ║  ◄─── Calming phrases & coping tips
-                                                      ║  (RAG Context Store)  ║       Top-2 semantically similar docs
-                                                      ╚══════════│════════════╝
-                                                                 │ 
-                                          Retrieved Context      │  
-                                                                 ▼
-                                                      ┌───────────────────────────────────────┐
-                                                      │  📝  Prompt Builder                   │
-                                                      │                                       │
-                                                      │  "You are a calm assistant for        │
-                                                      │   mentally challenged elderly users.  │
-                                                      │   Context: {retrieved_docs}           │
-                                                      │   User: {query}   Assistant:"         │
-                                                      └──────────────────┬────────────────────┘
-                                                                         │
-                                                                         ▼
-                                                      ╔══════════════════════════════════════╗
-                                                      ║   🤖  Mistral-7B-Instruct v0.1       ║
-                                                      ║                                      ║
-                                                      ║   ├─ 🔧 LoRA Adapter  (PEFT)         ║     ← Fine-tuned on mental
-                                                      ║   │     rank=8, α=16                 ║       health statistics data
-                                                      ║   │     target: q_proj, v_proj       ║
-                                                      ║   │                                  ║
-                                                      ║   └─ ⚡ 4-bit QLoRA (BitsAndBytes)  ║     ← NF4 quantization
-                                                      ║         fp16 compute dtype           ║      GPU memory efficient
-                                                      ╚══════════════════╦═══════════════════╝
-                                                                         ║
-                                                                         ▼
-                                                      ┌───────────────────────────────────────┐
-                                                      │  💚  Empathetic Response              │
-                                                      │      "Take slow deep breaths.         │
-                                                      │   You are safe. I am here with you."  │
-                                                      └───────────────────────────────────────┘
+    A["💬 User Input"] --> B["🗣️ User Query<br/><i>e.g., 'I feel anxious'</i>"]
+
+    B --> C["🧩 Embedding<br/>sentence-transformers/all-MiniLM-L6-v2"]
+
+    C --> D["🔍 FAISS Vector DB<br/>(RAG Context Store)"]
+
+    E["📚 Calming phrases & coping tips"] --> D
+
+    D -->|Top-2 Similar Documents| F["📝 Prompt Builder<br/><br/>System Prompt + Retrieved Context + User Query"]
+
+    F --> G["🤖 Mistral-7B-Instruct v0.1"]
+
+    H["🔧 LoRA Adapter (PEFT)<br/>rank=8, α=16<br/>target: q_proj, v_proj"] --> G
+
+    I["⚡ 4-bit QLoRA (BitsAndBytes)<br/>NF4 Quantization<br/>FP16 Compute"] --> G
+
+    G --> J["💚 Empathetic Response<br/><i>'Take slow deep breaths.<br/>You are safe. I am here with you.'</i>"]
+
+
 ```
+
+
 
 ---
 
