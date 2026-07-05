@@ -122,7 +122,7 @@ The proposed framework integrates Retrieval-Augmented Generation (RAG) with LoRA
 ## 🏗️ System Architecture
 
 <p align="center">
-  <img src="figures/architecture.png" alt="System Architecture" width="95%">
+  <img src="/figures/architecture.jpeg" alt="System Architecture" width="95%">
 </p>
 The proposed architecture integrates semantic retrieval with a fine-tuned Small Language Model (SLM) to generate context-aware and empathetic responses for elderly mental health support.
 
@@ -131,7 +131,7 @@ The proposed architecture integrates semantic retrieval with a fine-tuned Small 
 # 🔄 Project Workflow
 
 <p align="center">
-  <img src="figures/workflow.png" alt="Project Workflow" width="95%">
+  <img src="/figures/workflow.jpeg" alt="Project Workflow" width="95%">
 </p>
 
 
