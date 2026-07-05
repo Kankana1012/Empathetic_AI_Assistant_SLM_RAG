@@ -1,8 +1,9 @@
-# Empathetic_AI_Assistant_SLM_RAG
+# 🧠 MindCare Elder: Empathetic AI Assistant using SLM + RAG
+
+<p align="center">
+  <img src="figures/banner.png" alt="MindCare Elder Banner" width="100%">
+</p>
 <div align="center">
-<picture>
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=MindCare%20Elder&fontSize=52&fontColor=fff&animation=twinkling&fontAlignY=36&desc=Mental%20Health%20Chatbot%20for%20the%20Elderly&descAlignY=58&descSize=18" width="100%"/>
-</picture>
 <table>
 <tr>
 <td align="center" width="33%">
@@ -32,83 +33,127 @@
 
 ## 🌟 Overview
 
-**MindCare Elder** is an end-to-end AI-powered mental health support chatbot specifically designed for elderly users. It combines:
+**MindCare Elder** is an AI-powered mental health assistant designed to provide **empathetic, supportive, and context-aware conversations** for elderly users experiencing loneliness, anxiety, fear, stress, or memory-related concerns.
 
-- 🔧 **LoRA fine-tuning** of Mistral-7B-Instruct on real mental health prevalence data
-- 📚 **RAG (Retrieval-Augmented Generation)** via FAISS vector store for context-aware responses
-- 💬 **Interactive chat UI** built with `ipywidgets` inside Jupyter/Kaggle notebooks
-- 📊 **Comprehensive evaluation** using BLEU, ROUGE, BERTScore, and Intent Classification
+The project combines **Retrieval-Augmented Generation (RAG)** with **parameter-efficient LoRA fine-tuning** on **Mistral-7B-Instruct** to improve response quality while maintaining lightweight inference through **4-bit QLoRA quantization**.
 
-The chatbot responds to expressions of anxiety, fear, loneliness, confusion, and memory loss with calm, easy-to-understand language tailored for elderly users.
+Instead of generating responses solely from model memory, the assistant retrieves relevant supportive context from a FAISS vector database before generating responses, improving factual consistency and contextual relevance.
+
+This project demonstrates an end-to-end Generative AI pipeline including data preprocessing, semantic retrieval, model fine-tuning, response generation, and comprehensive evaluation using multiple NLP metrics.
+
+---
+# ✨ Key Highlights
+
+- 🧠 LoRA Fine-tuning of **Mistral-7B-Instruct**
+- 🔍 Retrieval-Augmented Generation (RAG)
+- ⚡ Efficient 4-bit QLoRA Quantization
+- 📚 FAISS Vector Database
+- 🤖 LangChain Retrieval Pipeline
+- 💬 Context-aware Empathetic Chatbot
+- 📊 BLEU, ROUGE & BERTScore Evaluation
+- 📈 Model Comparison & Ablation Study
+- 🧪 Statistical Significance Testing
+- 📉 Latency & Memory Optimization
+
+---
+# 🗂️ Repository Navigation
+
+```
+Empathetic_AI_Assistant_SLM_RAG/
+│
+├── README.md
+├── LICENSE
+├── requirements.txt
+├── .gitignore
+│
+├── notebooks/
+│   └── mental-care-chatbot-for-elder.ipynb
+│
+├── data/
+│   ├── README.md
+│   ├── download_dataset.md
+│   └── sample_dataset.csv
+│
+├── models/
+│   └── README.md
+│
+├── figures/
+│   ├── banner.png
+│   ├── graphical_abstract.png
+│   ├── architecture.png
+│   └── workflow.png
+│
+└── outputs/
+    ├── performance_metrics.png
+    ├── confusion_matrix.png
+    ├── model_comparison.png
+    ├── ablation_bleu.png
+    ├── latency_comparison.png
+    ├── radar_chart.png
+    ├── evaluation_results.csv
+    ├── classification_report.csv
+    └── sample_predictions.csv
+```
+# 🎯 Project Objectives
+
+The primary objectives of this project are:
+
+- Develop an AI assistant capable of providing empathetic responses for elderly mental health support.
+- Improve response quality using Retrieval-Augmented Generation (RAG).
+- Fine-tune a Large Language Model efficiently using LoRA and QLoRA.
+- Reduce GPU memory consumption while maintaining high performance.
+- Evaluate the chatbot using standard NLP evaluation metrics.
+- Demonstrate an end-to-end Generative AI application for healthcare support.
+
+---
+# 🔬 Methodology
+
+The proposed framework integrates Retrieval-Augmented Generation (RAG) with LoRA fine-tuning to generate context-aware and empathetic responses.
+
+1. **Dataset Preparation** – Collect and preprocess public mental health datasets.
+2. **Knowledge Base Construction** – Generate embeddings using **SentenceTransformer** and store them in a **FAISS** vector database.
+3. **Model Fine-tuning** – Fine-tune **Mistral-7B-Instruct** using **LoRA (PEFT)** with **4-bit QLoRA** quantization.
+4. **RAG Pipeline** – Retrieve relevant context from FAISS and combine it with the user query for prompt generation.
+5. **Response Generation** – Produce empathetic, context-aware responses using the fine-tuned model.
+6. **Performance Evaluation** – Assess the model using **BLEU**, **ROUGE**, **BERTScore**, **Confusion Matrix**, and **Latency Analysis**.
 
 ---
 
 ## 🏗️ System Architecture
 
-```mermaid
-flowchart TD
-
-    A["💬 User Input"] --> B["🗣️ User Query<br/><i>e.g., 'I feel anxious'</i>"]
-
-    B --> C["🧩 Embedding<br/>sentence-transformers/all-MiniLM-L6-v2"]
-
-    C --> D["🔍 FAISS Vector DB<br/>(RAG Context Store)"]
-
-    E["📚 Calming phrases & coping tips"] --> D
-
-    D -->|Top-2 Similar Documents| F["📝 Prompt Builder<br/><br/>System Prompt + Retrieved Context + User Query"]
-
-    F --> G["🤖 Mistral-7B-Instruct v0.1"]
-
-    H["🔧 LoRA Adapter (PEFT)<br/>rank=8, α=16<br/>target: q_proj, v_proj"] --> G
-
-    I["⚡ 4-bit QLoRA (BitsAndBytes)<br/>NF4 Quantization<br/>FP16 Compute"] --> G
-
-    G --> J["💚 Empathetic Response<br/><i>'Take slow deep breaths.<br/>You are safe. I am here with you.'</i>"]
+<p align="center">
+  <img src="figures/architecture.png" alt="System Architecture" width="95%">
+</p>
+The proposed architecture integrates semantic retrieval with a fine-tuned Small Language Model (SLM) to generate context-aware and empathetic responses for elderly mental health support.
 
 
-```
+---
+# 🔄 Project Workflow
+
+<p align="center">
+  <img src="figures/workflow.png" alt="Project Workflow" width="95%">
+</p>
 
 
 
 ---
 
-## ✨ Key Features
+## 🛠️ Tech Stack
 
-| Feature | Description |
-|---|---|
-| 🤗 **LoRA Fine-Tuning** | Parameter-efficient training with rank-8 LoRA on `q_proj` and `v_proj` |
-| 🔍 **RAG Pipeline** | FAISS + LangChain retrieval of calming context for better responses |
-| ⚡ **4-bit QLoRA** | BitsAndBytes NF4 quantization for efficient GPU inference |
-| 💬 **Interactive Widget** | ipywidgets-based chat UI for real-time conversation in notebooks |
-| 📈 **Full Evaluation Suite** | BLEU, ROUGE-1/2/L, BERTScore, Intent classification, Ablation study |
-| 🧪 **Statistical Validation** | t-test significance testing vs baseline models |
-| 📊 **Radar & Ablation Charts** | Visual comparison across all pipeline stages |
-
----
-
-## 📦 Tech Stack
-
-<br/>
-<div align="left">
-<!-- Tech logo badges row -->
-
-<a href="#"><img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" /></a>
-<img src="https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white" />
-<img src="https://img.shields.io/badge/Kaggle-20BEFF?style=flat-square&logo=kaggle&logoColor=white" />
-<img src="https://img.shields.io/badge/MIT-green?style=flat-square" />
-<img src="https://img.shields.io/badge/Active-brightgreen?style=flat-square" /> 
-<img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white" />
-<img src="https://img.shields.io/badge/HuggingFace-FFD21E?style=flat-square&logo=huggingface&logoColor=black" />
-<img src="https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white" />
-<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=flat-square&logo=scikitlearn&logoColor=white" />
-<img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" />
-</div>
-
-<a href="#"><img src="https://img.shields.io/badge/🤗%20Mistral-7B--Instruct-8A2BE2?style=for-the-badge&labelColor=1a1a2e" /></a>
-<a href="#"><img src="https://img.shields.io/badge/⚡%20LoRA-Fine--tuning-FF6B35?style=for-the-badge&labelColor=1a1a2e" /></a>
-<a href="#"><img src="https://img.shields.io/badge/🔍%20RAG-FAISS%20+%20LangChain-00C896?style=for-the-badge&labelColor=1a1a2e" /></a>
-<a href="#"><img src="https://img.shields.io/badge/🗜️%20QLoRA-4--bit%20NF4-E91E63?style=for-the-badge&labelColor=1a1a2e" /></a>
+| Category | Technologies |
+|:---------|:-------------|
+| **Programming Language** | Python |
+| **Deep Learning Framework** | PyTorch |
+| **NLP Framework** | Hugging Face Transformers |
+| **Fine-Tuning** | PEFT, LoRA, QLoRA |
+| **Vector Database** | FAISS |
+| **Embedding Model** | Sentence Transformers (`all-MiniLM-L6-v2`) |
+| **Data Processing** | Pandas, NumPy |
+| **Machine Learning** | Scikit-learn |
+| **Evaluation Metrics** | BLEU, ROUGE, BERTScore |
+| **Visualization** | Matplotlib |
+| **Development Environment** | Jupyter Notebook, Kaggle |
+| **Version Control** | GitHub |
 
 
 ---
