@@ -201,61 +201,22 @@ The proposed framework was evaluated using standard Natural Language Processing 
 
 The following visualizations summarize the performance, efficiency, and comparative evaluation of the proposed framework.
 
-<table align="center">
-<tr>
-<td align="center" width="50%">
+| **Performance Metrics** | **Model Comparison** |
+|-------------------------|----------------------|
+| <img src="/outputs/performance_metrics.jpeg" alt="Performance Metrics" width="100%"> | <img src="/outputs/model_comparison.jpeg" alt="Model Comparison" width="100%">|
 
-**Performance Metrics**
+---
 
-<img src="outputs/performance_metrics.png" alt="Performance Metrics" width="100%">
+| **Ablation Study** | **Confusion Matrix** |
+|--------------------|----------------------|
+| <img src="/outputs/ablation_bleu.jpeg" alt="Ablation Study" width="100%">| <img src="/outputs/confusion_matrix.jpeg" alt="Confusion Matrix" width="100%"> |
 
-</td>
+---
 
-<td align="center" width="50%">
+|**Inference Latency Comparison** | **Performance Radar Chart** |
+|---------------------------------|-----------------------------|
+| <img src="/outputs/latency_comparison.jpeg" alt="Latency Comparison" width="100%">| <img src="/outputs/radar_chart.jpeg" alt="Radar Chart" width="100%">|
 
-**Model Comparison**
-
-<img src="outputs/model_comparison.png" alt="Model Comparison" width="100%">
-
-</td>
-</tr>
-
-<tr>
-<td align="center">
-
-**Ablation Study**
-
-<img src="outputs/ablation_bleu.png" alt="Ablation Study" width="100%">
-
-</td>
-
-<td align="center">
-
-**Confusion Matrix**
-
-<img src="outputs/confusion_matrix.png" alt="Confusion Matrix" width="100%">
-
-</td>
-</tr>
-
-<tr>
-<td align="center">
-
-**Inference Latency Comparison**
-
-<img src="outputs/latency_comparison.png" alt="Latency Comparison" width="100%">
-
-</td>
-
-<td align="center">
-
-**Performance Radar Chart**
-
-<img src="outputs/radar_chart.png" alt="Radar Chart" width="100%">
-
-</td>
-</tr>
-</table>
 
 > 📌 **Note:** Additional evaluation reports, prediction results, and visualizations are available in the **`outputs/`** directory.
 
