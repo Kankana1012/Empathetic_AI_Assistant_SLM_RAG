@@ -158,28 +158,33 @@ The proposed architecture integrates semantic retrieval with a fine-tuned Small 
 
 ---
 
-## 📊 Results & Evaluation
+# 📊 Experimental Results
+
+The proposed framework was evaluated using standard Natural Language Processing (NLP) metrics to assess response quality, contextual relevance, and overall model performance.
 
 ### Model Performance Metrics
 
-| Metric | Score |                                          
-|---|---|
-| BLEU | **36.8** |
-| ROUGE-1 | **0.41** |
-| ROUGE-2 | **0.29** |
-| ROUGE-L | **0.41** |
-| BERTScore (F1) | **0.88** |
+| Metric | Score |
+|:-------|------:|
+| **BLEU** | **36.80** |
+| **ROUGE-1** | **0.41** |
+| **ROUGE-2** | **0.29** |
+| **ROUGE-L** | **0.41** |
+| **BERTScore (F1)** | **0.88** |
+
+> **Key Observation:**  
+> The integration of **RAG** and **LoRA fine-tuning** significantly improves contextual understanding and response quality while maintaining efficient inference.
 
 ### Ablation Study
 
 | Model | BLEU | ROUGE-L | BERTScore | Latency (ms) |
-|---|---|---|---|---|
+|:-------------|-----:|---------:|-----------:|-------------:|
 | Base LLM | 18.4 | 0.21 | 0.71 | 2100 |
 | Fine-tuned SLM | 24.7 | 0.29 | 0.78 | 1400 |
 | SLM + RAG | 31.5 | 0.36 | 0.83 | 950 |
 | **SLM + RAG + LoRA (Proposed)** | **36.8** | **0.41** | **0.88** | **720** |
 
-> 📌 The proposed pipeline achieves **2× better BLEU** and **36% lower latency** vs the base LLM.
+> **Result:** The proposed framework achieves nearly **2× higher BLEU score** and **66% lower inference latency** compared to the baseline model.
 
 ### Model Comparison
 
@@ -192,68 +197,147 @@ The proposed architecture integrates semantic retrieval with a fine-tuned Small 
 
 ---
 
-## 🚀 Getting Started
+# 📈 Experimental Visualizations
 
-### Prerequisites
+The following visualizations summarize the performance, efficiency, and comparative evaluation of the proposed framework.
 
-```bash
-pip install transformers datasets peft accelerate bitsandbytes \
-            sentence-transformers faiss-cpu langchain langchain-community \
-            langchain-huggingface streamlit evaluate rouge-score bert-score sacrebleu
-```
+<table align="center">
+<tr>
+<td align="center" width="50%">
 
-### Dataset
+**Performance Metrics**
 
-Place your mental health prevalence CSV at:
-```
-/kaggle/input/datasets/imtkaggleteam/mental-health/1- mental-illnesses-prevalence.csv
-```
+<img src="outputs/performance_metrics.png" alt="Performance Metrics" width="100%">
 
-### Run the Notebook
+</td>
 
-1. Open `mental-care-chatbot-for-elder.ipynb` in Kaggle or Jupyter
-2. Enable GPU (P100 / T4 recommended)
-3. Run all cells sequentially
-4. Interact via the ipywidgets chat UI at the end
+<td align="center" width="50%">
 
-### Quick Inference
+**Model Comparison**
 
-```python
-from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-from peft import PeftModel
-import torch
+<img src="outputs/model_comparison.png" alt="Model Comparison" width="100%">
 
-base_model = "mistralai/Mistral-7B-Instruct-v0.1"
-tokenizer = AutoTokenizer.from_pretrained(base_model)
+</td>
+</tr>
 
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_compute_dtype=torch.float16,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_use_double_quant=True
-)
+<tr>
+<td align="center">
 
-model = AutoModelForCausalLM.from_pretrained(base_model, quantization_config=bnb_config, device_map="auto")
-model = PeftModel.from_pretrained(model, "./final_model")
-model.eval()
+**Ablation Study**
 
-# Ask the bot
-response = generate_response("I feel anxious")
-print(response)
+<img src="outputs/ablation_bleu.png" alt="Ablation Study" width="100%">
+
+</td>
+
+<td align="center">
+
+**Confusion Matrix**
+
+<img src="outputs/confusion_matrix.png" alt="Confusion Matrix" width="100%">
+
+</td>
+</tr>
+
+<tr>
+<td align="center">
+
+**Inference Latency Comparison**
+
+<img src="outputs/latency_comparison.png" alt="Latency Comparison" width="100%">
+
+</td>
+
+<td align="center">
+
+**Performance Radar Chart**
+
+<img src="outputs/radar_chart.png" alt="Radar Chart" width="100%">
+
+</td>
+</tr>
+</table>
+
+> 📌 **Note:** Additional evaluation reports, prediction results, and visualizations are available in the **`outputs/`** directory.
+
+---
+
+# 📂 Dataset
+
+The chatbot is developed using publicly available mental health datasets to support context-aware response generation and model evaluation.
+
+### Dataset Contents
+
+- Mental illness prevalence
+- Anxiety-related statistics
+- Depression-related information
+- Mental health burden indicators
+- Emotional support knowledge
+
+> **Note:**  
+> The complete datasets are not included in this repository due to licensing and file size limitations.
+
+For dataset details, see:
+
+- 📄 `data/download_dataset.md`
+- 📄 `data/README.md`
+
+A small sample dataset is available in:
+
+```text
+data/sample_dataset.csv
 ```
 
 ---
 
-## 🗂️ Project Structure
+# ⚙️ Installation
 
+### Clone the Repository
+
+```bash
+git clone https://github.com/your-username/Empathetic_AI_Assistant_SLM_RAG.git
+
+cd Empathetic_AI_Assistant_SLM_RAG
 ```
-📦 mental-care-chatbot-for-elder
- ┣ 📓 mental-care-chatbot-for-elder.ipynb   # Main notebook
- ┣ 📁 final_model/                           # Saved LoRA adapter weights
- ┃ ┣ adapter_config.json
- ┃ ┗ adapter_model.safetensors
- ┗ 📄 README.md
+
+### Install Dependencies
+
+```bash
+pip install -r requirements.txt
 ```
+
+---
+
+# 🚀 Running the Project
+
+### Step 1
+
+Launch Jupyter Notebook.
+
+```bash
+jupyter notebook
+```
+
+### Step 2
+
+Open
+
+```text
+notebooks/mental-care-chatbot-for-elder.ipynb
+```
+
+### Step 3
+
+Run all notebook cells sequentially.
+
+### Step 4
+
+Interact with the chatbot through the notebook interface after model loading completes.
+
+> **Recommended Hardware**
+>
+> - GPU: NVIDIA T4 / P100 or higher
+> - RAM: 16 GB+
+> - Python 3.10+
 
 ---
 
@@ -279,26 +363,133 @@ p-value     : < 0.0001  ✅ Statistically significant
 
 ---
 
-## 🙏 Acknowledgements
+# ⚠️ Limitations
 
-- [Mistral AI](https://mistral.ai/) for the Mistral-7B-Instruct model
-- [HuggingFace](https://huggingface.co/) for Transformers, PEFT, and Datasets
-- [LangChain](https://www.langchain.com/) for the RAG pipeline
-- [Kaggle](https://www.kaggle.com/) for GPU compute and the mental health dataset
-- The open-source community for FAISS, BitsAndBytes, and Sentence-Transformers
+While the proposed framework demonstrates promising performance, it has several limitations:
 
+- Supports only **English-language** interactions.
+- Developed and evaluated using **publicly available mental health datasets**.
+- Implemented as a **Jupyter Notebook** prototype rather than a production-ready application.
+- Responses are intended for **educational and research purposes** and should not replace professional mental health advice.
+- Training and fine-tuning require access to GPU resources for optimal performance.
 
 ---
 
-## 🤝 Contributing
+# 🚀 Future Work
 
-Contributions, issues, and feature requests are welcome!
-Feel free to open a [GitHub Issue](https://github.com/YOUR_USERNAME/Empathetic_AI_Assistant_SLM_RAG) or submit a pull request.
+Several enhancements can further improve the proposed framework:
+
+- 🌍 Multilingual conversational support.
+- 🎤 Voice-based interaction for elderly users.
+- 🌐 Web application deployment using **Streamlit** or **Gradio**.
+- 📱 Mobile application integration.
+- 🧠 Long-term conversational memory for personalized interactions.
+- 🩺 Integration with domain-specific medical and psychological knowledge bases.
+- ☁️ Deployment on cloud platforms for scalable inference.
+
+---
+
+# 📚 References
+
+This project builds upon several open-source frameworks and pre-trained models:
+
+- 🤗 Hugging Face Transformers
+- 🔥 PyTorch
+- 🔍 FAISS
+- 🔗 LangChain
+- 🧩 PEFT (Parameter-Efficient Fine-Tuning)
+- 📖 Sentence Transformers
+- 🧠 Mistral-7B-Instruct
+
+---
+
+# 🙏 Acknowledgements
+
+The development of this project was made possible through the contributions of the open-source AI community.
+
+Special thanks to:
+
+- 🤗 Hugging Face for the Transformers and PEFT libraries.
+- 🧠 Mistral AI for the Mistral-7B-Instruct model.
+- 🔍 Meta AI for the FAISS similarity search library.
+- 🔗 LangChain for enabling Retrieval-Augmented Generation (RAG).
+- 📊 The creators of the publicly available mental health datasets.
+- 💙 The open-source community for providing valuable tools and resources.
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome!
+
+If you'd like to improve this project:
+
+1. Fork the repository.
+2. Create a new feature branch.
+3. Commit your changes.
+4. Push the branch to your fork.
+5. Open a Pull Request.
+
+For major changes, please open an issue first to discuss your proposed improvements.
+
+---
+
+# 📜 License
+
+This project is licensed under the **MIT License**.
+
+See the [LICENSE](LICENSE) file for more details.
+
+---
+
+# 👩‍💻 About the Author
+
+**Kankana Chakraborty**
+
+Final-year **B.Tech in Computer Science & Technology** with a strong interest in:
+
+- 🤖 Artificial Intelligence
+- 🧠 Machine Learning
+- 💬 Natural Language Processing
+- 🔍 Retrieval-Augmented Generation (RAG)
+- 🦙 Large Language Models (LLMs)
+- ⚡ Small Language Models (SLMs)
+- 📊 Deep Learning
+
+This project reflects my interest in developing reliable, efficient, and human-centered AI systems for real-world applications.
+
+---
+
+# 📬 Contact
+
+<p align="center">
+
+<a href="https://github.com/Kankana1012">
+<img src="https://img.shields.io/badge/GitHub-Kankana1012-181717?style=for-the-badge&logo=github">
+</a>
+
+<a href="https://www.linkedin.com/in/kankana-chakraborty">
+<img src="https://img.shields.io/badge/LinkedIn-Kankana%20Chakraborty-0077B5?style=for-the-badge&logo=linkedin">
+</a>
+
+<a href="mailto:your-email@example.com">
+<img src="https://img.shields.io/badge/Email-Contact%20Me-D14836?style=for-the-badge&logo=gmail&logoColor=white">
+</a>
+
+</p>
 
 ---
 
 <div align="center">
-<picture>
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=footer&text=Made%20with%20❤️%20to%20bring%20calm%20and%20comfort%20to%20our%20elders&fontSize=18&fontColor=fff&animation=twinkling&fontAlignY=36&desc=You%20are%20not%20alone.%20I%20am%20here%20with%20you.&descAlignY=58&descSize=16" width="100%"/>
-</picture>
+
+### ⭐ If you find this project useful, consider giving it a Star!
+
+**Thank you for visiting this repository.**
+</div>
+
+<div align="center">
+  
+### Made with❤️to bring calm and comfort to our elders
+  
+  **You are not alone. I am here with you.**
 </div>
