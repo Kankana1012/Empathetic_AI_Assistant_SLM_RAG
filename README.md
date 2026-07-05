@@ -433,7 +433,7 @@ This project reflects my interest in developing reliable, efficient, and human-c
 <img src="https://img.shields.io/badge/LinkedIn-Kankana%20Chakraborty-0077B5?style=for-the-badge&logo=linkedin">
 </a>
 
-<a href="mailto:your-email@example.com">
+<a href="lushichakraborty@gmail.com">
 <img src="https://img.shields.io/badge/Email-Contact%20Me-D14836?style=for-the-badge&logo=gmail&logoColor=white">
 </a>
 
