@@ -70,6 +70,8 @@ Instead of generating responses solely from model memory, the assistant retrieve
 
 This project demonstrates an end-to-end Generative AI pipeline including data preprocessing, semantic retrieval, model fine-tuning, response generation, and comprehensive evaluation using multiple NLP metrics.
 
+> ⚠️ **Disclaimer:** This is a research prototype built for educational and academic purposes. It is **not** a substitute for professional mental health care and is **not** designed to handle crisis situations or emergencies. If you or someone you know is in distress, please contact a licensed professional or local emergency services.
+
 ---
 # ✨ Key Highlights
 
@@ -203,6 +205,8 @@ The proposed framework was evaluated using standard Natural Language Processing 
 
 > **Key Observation:**  
 > The integration of **RAG** and **LoRA fine-tuning** significantly improves contextual understanding and response quality while maintaining efficient inference.
+
+> **Evaluation Setup:** Metrics were computed on a held-out test split of the mental health dataset (80/10/10 train/val/test), averaged over multiple evaluation runs. Full per-run results are available in `outputs/evaluation_results.csv`.
 
 ### Ablation Study
 
