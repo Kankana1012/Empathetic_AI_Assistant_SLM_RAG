@@ -1,7 +1,7 @@
 # 🧠 MindCare Elder: Empathetic AI Assistant using SLM + RAG
 
 <p align="center">
-  <img src="figures/banner.png" alt="MindCare Elder Banner" width="100%">
+  <img src="/figures/banner.png" alt="MindCare Elder Banner" width="100%">
 </p>
 <div align="center">
 <table>
@@ -30,8 +30,37 @@
 </div>
 
 ---
+---
 
-## 🌟 Overview
+## 📑 Table of Contents
+
+- [Overview](#-overview)
+- [Key Highlights](#-key-highlights)
+- [Repository Navigation](#️-repository-navigation)
+- [Project Objectives](#-project-objectives)
+- [Methodology](#-methodology)
+- [System Architecture](#️-system-architecture)
+- [Project Workflow](#-project-workflow)
+- [Tech Stack](#️-tech-stack)
+- [Experimental Results](#-experimental-results)
+- [Experimental Visualizations](#-experimental-visualizations)
+- [Dataset](#-dataset)
+- [Installation](#️-installation)
+- [Running the Project](#-running-the-project)
+- [Sample Conversations](#-sample-conversations)
+- [Statistical Validation](#-statistical-validation)
+- [Limitations](#️-limitations)
+- [Future Work](#-future-work)
+- [References](#-references)
+- [Acknowledgements](#-acknowledgements)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [About the Author](#-about-the-author)
+- [Contact](#-contact)
+
+---
+
+# 🌟 Overview
 
 **MindCare Elder** is an AI-powered mental health assistant designed to provide **empathetic, supportive, and context-aware conversations** for elderly users experiencing loneliness, anxiety, fear, stress, or memory-related concerns.
 
@@ -119,7 +148,7 @@ The proposed framework integrates Retrieval-Augmented Generation (RAG) with LoRA
 
 ---
 
-## 🏗️ System Architecture
+# 🏗️ System Architecture
 
 <p align="center">
   <img src="/figures/architecture.png" alt="System Architecture" width="95%">
@@ -138,7 +167,7 @@ The proposed architecture integrates semantic retrieval with a fine-tuned Small 
 
 ---
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 
 | Category | Technologies |
 |:---------|:-------------|
@@ -302,7 +331,7 @@ Interact with the chatbot through the notebook interface after model loading com
 
 ---
 
-## 💡 Sample Conversations
+# 💡 Sample Conversations
 
 | User Says | Bot Responds |
 |---|---|
@@ -313,7 +342,7 @@ Interact with the chatbot through the notebook interface after model loading com
 
 ---
 
-## 🔬 Statistical Validation
+# 🔬 Statistical Validation
 
 A two-sample **t-test** confirms the proposed model significantly outperforms the baseline:
 
@@ -433,7 +462,7 @@ This project reflects my interest in developing reliable, efficient, and human-c
 <img src="https://img.shields.io/badge/LinkedIn-Kankana%20Chakraborty-0077B5?style=for-the-badge&logo=linkedin">
 </a>
 
-<a href="lushichakraborty@gmail.com">
+<a href="mailto:lushichakraborty@gmail.com">
 <img src="https://img.shields.io/badge/Email-Contact%20Me-D14836?style=for-the-badge&logo=gmail&logoColor=white">
 </a>
 
