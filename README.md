@@ -38,8 +38,7 @@
 - [Key Highlights](#-key-highlights)
 - [Repository Navigation](#️-repository-navigation)
 - [Project Objectives](#-project-objectives)
-- [Methodology](#-methodology)
-- [System Architecture](#️-system-architecture)
+- [System Architecture & Methodology](#-system-architecture-&-methodology)
 - [Project Workflow](#-project-workflow)
 - [Tech Stack](#️-tech-stack)
 - [Experimental Results](#-experimental-results)
@@ -137,26 +136,20 @@ The primary objectives of this project are:
 - Demonstrate an end-to-end Generative AI application for healthcare support.
 
 ---
-# 🔬 Methodology
 
-The proposed framework integrates Retrieval-Augmented Generation (RAG) with LoRA fine-tuning to generate context-aware and empathetic responses.
-
-1. **Dataset Preparation** – Collect and preprocess public mental health datasets.
-2. **Knowledge Base Construction** – Generate embeddings using **SentenceTransformer** and store them in a **FAISS** vector database.
-3. **Model Fine-tuning** – Fine-tune **Mistral-7B-Instruct** using **LoRA (PEFT)** with **4-bit QLoRA** quantization.
-4. **RAG Pipeline** – Retrieve relevant context from FAISS and combine it with the user query for prompt generation.
-5. **Response Generation** – Produce empathetic, context-aware responses using the fine-tuned model.
-6. **Performance Evaluation** – Assess the model using **BLEU**, **ROUGE**, **BERTScore**, **Confusion Matrix**, and **Latency Analysis**.
-
----
-
-# 🏗️ System Architecture
-
+# 🏗️ System Architecture & Methodology
+ 
 <p align="center">
-  <img src="/figures/architecture.png" alt="System Architecture" width="95%">
+  <img src="figures/architecture.png" alt="System Architecture" width="90%">
 </p>
-The proposed architecture integrates semantic retrieval with a fine-tuned Small Language Model (SLM) to generate context-aware and empathetic responses for elderly mental health support.
-
+The architecture integrates semantic retrieval with a fine-tuned Small Language Model (SLM) to generate context-aware, empathetic responses:
+ 
+1. **Dataset Preparation** — collect and preprocess public mental health datasets.
+2. **Knowledge Base Construction** — generate embeddings with **Sentence Transformers** and index them in **FAISS**.
+3. **Model Fine-Tuning** — fine-tune **Mistral-7B-Instruct** using **LoRA (PEFT)** with **4-bit QLoRA**.
+4. **RAG Pipeline** — retrieve relevant context from FAISS and combine it with the user query.
+5. **Response Generation** — produce empathetic, context-aware responses via the fine-tuned model.
+6. **Evaluation** — assess with BLEU, ROUGE, BERTScore, confusion matrix, and latency analysis.
 
 ---
 # 🔄 Project Workflow
@@ -164,8 +157,6 @@ The proposed architecture integrates semantic retrieval with a fine-tuned Small 
 <p align="center">
   <img src="/figures/workflow.jpeg" alt="Project Workflow" width="95%">
 </p>
-
-
 
 ---
 
