@@ -440,7 +440,7 @@ See the [LICENSE](LICENSE) file for more details.
 
 **Kankana Chakraborty**
 
-Final-year **B.Tech in Computer Science & Technology** with a strong interest in:
+**B.Tech in Computer Science & Technology** with a strong interest in:
 
 - 🤖 Artificial Intelligence
 - 🧠 Machine Learning
